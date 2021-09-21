@@ -1,9 +1,12 @@
-Enter Chat and press enter
+Bienvenidos a Nizt.
 <div><input id=input placeholder="message" /></div>
 Chat Output
 <div id=box></div>
 <script src=https://cdn.pubnub.com/sdk/javascript/pubnub.4.28.2.min.js></script>
 <script> (function() {
+
+        var name = window.prompt("¿Cuál es tu nombre?")
+
         var pubnub = new PubNub({
             publishKey: 'pub-c-743a4e73-812a-423b-9f95-7885893306c0',
             subscribeKey: 'sub-c-8fb7a62a-1a30-11ec-9ca7-5693d1c31269'
@@ -16,7 +19,7 @@ Chat Output
             channel = '10chat-demo';
         pubnub.addListener({
             message: function(obj) {
-                box.innerHTML = ('' + obj.message).replace(/[<>]/g, '') + '<br>' + box.innerHTML
+                box.innerHTML = ('[' + name + ']' + ' ' + '' + obj.message).replace(/[<>]/g, '') + '<br>' + box.innerHTML
             }
         });
         pubnub.subscribe({
